@@ -1,6 +1,6 @@
 cask "mutepad" do
-  version "0.1.0-beta.1"
-  sha256 "3852ee55f8f088f7f6ac02a68e90154dfc8d316cc07d57ada4eaef2d6b7a3c79"
+  version "0.1.0-beta.2"
+  sha256 "87c34b45128273140ae1b829de086918c76ef91ad014e818cd8283ab73b93881"
 
   url "https://github.com/FahrilPratama/mute-pad/releases/download/v#{version}/MutePad.dmg"
   name "MutePad"
