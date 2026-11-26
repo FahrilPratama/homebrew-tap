@@ -1,24 +1,20 @@
 cask "mutepad" do
-  version "1.0.0"
-  sha256 "5b2bc58c1ddcd8ff10c5bbc92d5092d54c84308ef900cb0146a7eba684e456ae"
+  version "0.1.0-beta.1"
+  sha256 "3852ee55f8f088f7f6ac02a68e90154dfc8d316cc07d57ada4eaef2d6b7a3c79"
 
   url "https://github.com/FahrilPratama/mute-pad/releases/download/v#{version}/MutePad.dmg"
   name "MutePad"
-  desc "Menu bar utility that locks the built-in trackpad when an external mouse is connected"
+  desc "Locks built-in trackpad when an external mouse is connected"
   homepage "https://github.com/FahrilPratama/mute-pad"
 
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   app "MutePad.app"
 
-  postflight do
+  postflight_steps do
     # Remove Gatekeeper quarantine attribute for unsigned open-source releases
-    system_command "/usr/bin/xattr",
-                   args: ["-cr", "#{appdir}/MutePad.app"],
-                   sudo: false
+    run "/usr/bin/xattr", args: ["-cr", "/Applications/MutePad.app"]
   end
 
-  zap trash: [
-    "~/Library/Preferences/com.fahrilpratama.MutePad.plist",
-  ]
+  zap trash: "~/Library/Preferences/com.fahrilpratama.MutePad.plist"
 end
