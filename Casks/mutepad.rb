@@ -1,6 +1,6 @@
 cask "mutepad" do
-  version "1.0.2"
-  sha256 "09247686ed4d9a13a2667684cc8a7a1f573bbbd2f3f6032b4983195ad60e7e48"
+  version "1.0.1"
+  sha256 "75578f9ab20f4b5842eade1cadd6f4c070688401ddd9583265e9f150673669b5"
 
   url "https://github.com/FahrilPratama/mute-pad/releases/download/v#{version}/MutePad.dmg"
   name "MutePad"
@@ -13,14 +13,7 @@ cask "mutepad" do
 
   postflight_steps do
     # Remove Gatekeeper quarantine attribute for unsigned open-source releases
-    run "/usr/bin/xattr",
-        args:         ["-cr", "/Applications/MutePad.app"],
-        must_succeed: false
-    # Reset stale TCC Accessibility entry so updated ad-hoc binary does not conflict
-    run "/usr/bin/tccutil",
-        args:         ["reset", "Accessibility", "com.fahrilpratama.MutePad"],
-        must_succeed: false,
-        print_stderr: false
+    run "/usr/bin/xattr", args: ["-cr", "/Applications/MutePad.app"]
   end
 
   zap trash: "~/Library/Preferences/com.fahrilpratama.MutePad.plist"
