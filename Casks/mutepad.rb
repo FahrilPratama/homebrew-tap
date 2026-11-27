@@ -1,6 +1,6 @@
 cask "mutepad" do
-  version "0.1.0-beta.4"
-  sha256 "d58a839f6c03ae2f9a89d9750740f25b8ec4540a9f98abb9c68bb91210119823"
+  version "1.0.0"
+  sha256 "4cc1d2f2adb1ddf1ffe70de9eb71fed2b20501afecf2c905cacb86444418c56f"
 
   url "https://github.com/FahrilPratama/mute-pad/releases/download/v#{version}/MutePad.dmg"
   name "MutePad"
@@ -12,8 +12,9 @@ cask "mutepad" do
   app "MutePad.app"
 
   postflight_steps do
-    # Remove Gatekeeper quarantine attribute for unsigned open-source releases
+    # Remove Gatekeeper quarantine attribute and reset stale ad-hoc TCC entries
     run "/usr/bin/xattr", args: ["-cr", "/Applications/MutePad.app"]
+    run "/usr/bin/tccutil", args: ["reset", "Accessibility", "com.fahrilpratama.MutePad"]
   end
 
   zap trash: "~/Library/Preferences/com.fahrilpratama.MutePad.plist"
